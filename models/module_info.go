@@ -6,13 +6,16 @@ import (
 )
 
 type ModuleInfo struct {
-	Catelog   string
-	Name      string
-	FilePath  string
-	MoviePath string
+	Catelog      string
+	Name         string
+	FilePath     string
+	MovieDirPath string
 }
 
+//要爬取的小电影主页
 var HttpPath string
+
+//存放小电影的文件夹路径(大路径)
 var DirPath string
 
 //初始化
@@ -35,7 +38,7 @@ func InitModuleInfos() (map[string]ModuleInfo, error) {
 	modules := map[string]ModuleInfo{}
 	for _, info := range infos {
 		info.FilePath = filepath.Join(DirPath, info.Name+".txt")
-		info.MoviePath = filepath.Join(DirPath, info.Name)
+		info.MovieDirPath = filepath.Join(DirPath, info.Name)
 		modules[info.Catelog] = info
 	}
 

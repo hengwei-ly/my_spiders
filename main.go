@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"myMovies/models"
 	"myMovies/services"
+	"myMovies/utils"
 )
 
 var modules map[string]models.ModuleInfo
@@ -94,6 +95,11 @@ func checkoutFiles(checkoutCatelog string) error {
 	if checkoutCatelog == "all" {
 
 	} else {
-		err := services.CheckoutFiles()
+		dirPath := modules[checkoutCatelog].MovieDirPath
+		names := utils.GetFilesNameByDirPath(dirPath)
+		for _, name := range names {
+			fmt.Println(name)
+		}
 	}
+	return nil
 }
